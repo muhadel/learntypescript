@@ -6,8 +6,9 @@ var LOCAL_MONGO_URI = "mongodb://localhost:27017/pos_development";
 var MONGODB_CONFIG = {
     useNewUrlParser: true,
     autoReconnect: true,
-    useCreateIndex: true,
-    useFindAndModify: false
+    // useCreateIndex: true,
+    // useFindAndModify: false,
+    useUnifiedTopology: true
 };
 exports.MONGODB_CONFIG = MONGODB_CONFIG;
 var MONGOOSE_CONFIG = { MONGO_URI: MONGO_URI, MONGODB_CONFIG: MONGODB_CONFIG };

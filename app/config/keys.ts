@@ -4,8 +4,9 @@ const LOCAL_MONGO_URI = "mongodb://localhost:27017/pos_development";
 const MONGODB_CONFIG = {
   useNewUrlParser: true,
   autoReconnect: true,
-  useCreateIndex: true,
-  useFindAndModify: false
+  // useCreateIndex: true,
+  // useFindAndModify: false,
+  useUnifiedTopology: true
 };
 const MONGOOSE_CONFIG = { MONGO_URI, MONGODB_CONFIG };
 const JwtSecret = "mysecret";
