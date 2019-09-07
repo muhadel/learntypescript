@@ -8,3 +8,7 @@ exports.sendNotFound = function send404(httpRes) {
     httpRes.writeHead(404);
     httpRes.end();
 };
+exports.sendInternalError = function send500(httpRes) {
+    httpRes.writeHead(500);
+    httpRes.end();
+};

@@ -1,14 +1,9 @@
 /* global require process*/
-import { sendNotFound } from "../utils/handller-methods";
+import { sendNotFound, sendInternalError } from "../utils/handller-methods";
 // Keys
 import { MONGO_URI, MONGODB_CONFIG } from "./keys";
 
 const mongo = require("mongodb").MongoClient;
-
-const sendInternalError = function send500(httpRes: any) {
-  httpRes.writeHead(500);
-  httpRes.end();
-};
 
 /** Class representing a Mongo collection. */
 /* global module */
@@ -22,7 +17,6 @@ export default class MongoCollection {
    */
   constructor(collectionName: string) {
     /** @member {string} */
-    // this.url = url;
     this.url = MONGO_URI;
 
     mongo
@@ -43,7 +37,7 @@ export default class MongoCollection {
    */
   insert(doc: any, httpRes: any) {
     this.docs
-      .insert(doc)
+      .insertOne(doc)
       .then((result: any) => {
         httpRes.writeHead(200, { "Content-Type": "application/json" });
         httpRes.end(JSON.stringify(result.ops[0]));

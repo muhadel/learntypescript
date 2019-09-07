@@ -39,13 +39,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongo_collection_1 = __importDefault(require("../config//mongo-collection"));
+var mongo_collection_1 = __importDefault(require("../config/mongo-collection"));
 var Items = new mongo_collection_1.default("items");
 exports.getItems = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var items;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, Items.find({}, {}, res)];
+            case 0:
+                // Items.insert({ name: "Alaa Adel" }, res);
+                console.log("getItems");
+                return [4 /*yield*/, Items.find({}, {}, res)];
             case 1:
                 items = _a.sent();
                 return [2 /*return*/, res.json(items)];

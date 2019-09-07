@@ -5,10 +5,6 @@ var handller_methods_1 = require("../utils/handller-methods");
 // Keys
 var keys_1 = require("./keys");
 var mongo = require("mongodb").MongoClient;
-var sendInternalError = function send500(httpRes) {
-    httpRes.writeHead(500);
-    httpRes.end();
-};
 /** Class representing a Mongo collection. */
 /* global module */
 var MongoCollection = /** @class */ (function () {
@@ -20,7 +16,6 @@ var MongoCollection = /** @class */ (function () {
     function MongoCollection(collectionName) {
         var _this = this;
         /** @member {string} */
-        // this.url = url;
         this.url = keys_1.MONGO_URI;
         mongo
             .connect(this.url, keys_1.MONGODB_CONFIG)
@@ -39,13 +34,13 @@ var MongoCollection = /** @class */ (function () {
      */
     MongoCollection.prototype.insert = function (doc, httpRes) {
         this.docs
-            .insert(doc)
+            .insertOne(doc)
             .then(function (result) {
             httpRes.writeHead(200, { "Content-Type": "application/json" });
             httpRes.end(JSON.stringify(result.ops[0]));
         })
             .catch(function (err) {
-            sendInternalError(httpRes);
+            handller_methods_1.sendInternalError(httpRes);
             throw err;
         });
     };
@@ -70,7 +65,7 @@ var MongoCollection = /** @class */ (function () {
             })
                 .catch(function (err) {
                 if (err) {
-                    sendInternalError(httpRes);
+                    handller_methods_1.sendInternalError(httpRes);
                     reject(err);
                 }
             });
@@ -97,7 +92,7 @@ var MongoCollection = /** @class */ (function () {
         })
             .catch(function (err) {
             if (err) {
-                sendInternalError(httpRes);
+                handller_methods_1.sendInternalError(httpRes);
                 throw err;
             }
         });
