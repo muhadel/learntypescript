@@ -1,9 +1,8 @@
 /* global require process*/
+import { MongoClient as mongo } from "mongodb";
 import { sendNotFound, sendInternalError } from "../utils/handller-methods";
 // Keys
 import { MONGO_URI, MONGODB_CONFIG } from "./keys";
-
-const mongo = require("mongodb").MongoClient;
 
 /** Class representing a Mongo collection. */
 /* global module */

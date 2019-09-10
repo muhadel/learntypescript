@@ -1,16 +1,16 @@
 /* global require */
-import express = require("express");
-import cors = require("cors");
-import helmet = require("helmet");
-import compression = require("compression");
-import path = require("path");
-// import mongoose = require("mongoose");
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import compression from "compression";
+import path from "path";
+// import mongoose from "mongoose";
 
 //Routes
 import itemRoutes from "./routes/api/item-routes";
 
 // Files
-import { MONGO_URI, MONGODB_CONFIG, PORT, HOST } from "./config/keys";
+import { NODE_PORT, HOST } from "./config/keys";
 // Create a new express application instance
 const app: express.Application = express();
 //Middlewares
@@ -20,7 +20,7 @@ app.use(compression());
 // Configure Express to serve static files in the public folder
 app.use(express.static(path.join(__dirname, "public")));
 
-// MongoDB Connection
+// Mongoose Connection
 // mongoose
 //   .connect(MONGO_URI, MONGODB_CONFIG)
 //   .then(() => {
@@ -35,12 +35,12 @@ app.get("/", function(req, res) {
   res.send({
     done: true,
     HOST,
-    PORT
+    NODE_PORT
   });
 });
-//Use Routes
+// Use Routes
 app.use("/api/items", itemRoutes);
-//Listening
-app.listen(PORT, function() {
-  console.log(`Server Running on http://${HOST}:${PORT}`);
+// Start the HTTP server listening for connections
+app.listen(NODE_PORT, function() {
+  console.log(`Server Running on http://${HOST}:${NODE_PORT}`);
 });
