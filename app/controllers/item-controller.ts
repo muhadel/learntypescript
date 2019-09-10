@@ -11,3 +11,10 @@ export const getItems = async (req: Request, res: Response) => {
 
   return res.json(items);
 };
+
+export const addNewItem = async (req: Request, res: Response) => {
+  console.log("body", req.body);
+
+  Items.insert({ name: "Alaa Adel" }, res);
+  // return res.json({ done: true });
+};
