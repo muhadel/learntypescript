@@ -1,5 +1,5 @@
 import expres = require("express");
-
+import Validator from "../../utils/validator";
 // items controller
 import { getItems, addNewItem } from "../../controllers/item-controller";
 
@@ -19,7 +19,7 @@ router.route("/").get(getItems);
  * @res {object} httpRes - Items Data.
  * @TODO - Add new items data.
  */
-router.route("/").post(addNewItem);
+router.route("/").post(Validator.checkItem, addNewItem);
 
 export default router;
 // module.exports = router;

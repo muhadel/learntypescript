@@ -1,5 +1,6 @@
 /* global require */
 import express from "express";
+import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import compression from "compression";
@@ -13,6 +14,9 @@ import itemRoutes from "./routes/api/item-routes";
 import { NODE_PORT, HOST } from "./config/keys";
 // Create a new express application instance
 const app: express.Application = express();
+//Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 //Middlewares
 app.use(cors());
 app.use(helmet());

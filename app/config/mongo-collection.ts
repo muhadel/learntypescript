@@ -38,8 +38,6 @@ export default class MongoCollection {
     this.docs
       .insertOne(doc)
       .then((result: any) => {
-        console.log("insertresult", result);
-
         httpRes.writeHead(200, { "Content-Type": "application/json" });
         httpRes.end(JSON.stringify(result.ops[0]));
       })
